@@ -1,0 +1,20 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Recipe application",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adriantutuianu/Forkify-App.git"
+  },
+  "author": "Adrian Tutuianu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adriantutuianu/Forkify-App/issues"
+  },
+  "homepage": "https://github.com/Adriantutuianu/Forkify-App#readme"
+}
