@@ -1,3 +1,6 @@
+// import icons from '../img/icons.svg'; //parcel 1
+import icons from 'url:../img/icons.svg'; //parcel 2
+
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -15,8 +18,8 @@ const timeout = function (s) {
 const showRecipe = async function () {
   try {
     const res = await fetch(
-      // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bca3b'
-      'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
+      'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bca3b'
+      // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
     );
     const data = await res.json();
 
