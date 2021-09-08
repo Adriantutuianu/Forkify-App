@@ -164,4 +164,4 @@ ${recipe.ingredients
   }
 };
 
-showRecipe();
+window.addEventListener('hashchange', showRecipe);
