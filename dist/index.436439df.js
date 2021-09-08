@@ -509,7 +509,12 @@ const showRecipe = async function() {
         alert(err);
     }
 };
-window.addEventListener('hashchange', showRecipe);
+[
+    'hashchange',
+    'load'
+].forEach((ev)=>window.addEventListener(ev, showRecipe)
+); // window.addEventListener('hashchange', showRecipe);
+ // window.addEventListener('load', showRecipe);
 
 },{"url:../img/icons.svg":"iwCpK","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"iwCpK":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('8LZRF') + "icons.c097e590.svg";
