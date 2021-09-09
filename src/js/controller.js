@@ -38,7 +38,6 @@ const showRecipe = async function () {
     console.log(id);
 
     if (!id) return;
-
     renderSpinner(recipeContainer);
 
     //Loading recipe

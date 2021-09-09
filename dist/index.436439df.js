@@ -522,7 +522,7 @@ const loadRecipe = async function(id) {
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
         const { recipe  } = data.data;
-        recipe = {
+        state.recipe = {
             id: recipe.id,
             title: recipe.title,
             publisher: recipe.publisher,
@@ -532,7 +532,6 @@ const loadRecipe = async function(id) {
             cookingTime: recipe.cooking_time,
             ingredients: recipe.ingredients
         };
-        console.log('Recipe: see next line');
         console.log(state.recipe);
     } catch (err) {
         alert(err);
