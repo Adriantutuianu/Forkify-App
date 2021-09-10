@@ -1,11 +1,14 @@
+// import icons from '../img/icons.svg'; //parcel 1
+import icons from 'url:../../img/icons.svg'; //parcel 2
+
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
 
   render(data) {
     this.#data = data;
-    const markup = this.#generateMarkup;
-    this.#clear;
+    const markup = this.#generateMarkup();
+    this.#clear();
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
@@ -13,7 +16,7 @@ class RecipeView {
     this.#parentElement.innerHTML = '';
   }
 
-  renderSpinner = function (parentEl) {
+  renderSpinner = function () {
     const markup = `
     <div class="spinner">
             <svg>
@@ -21,8 +24,8 @@ class RecipeView {
             </svg>
           </div>
     `;
-    parentEl.innerHTML = '';
-    parentEl.insertAdjacentHTML('afterbegin', markup);
+    this.#parentElement.innerHTML = '';
+    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   };
 
   #generateMarkup() {

@@ -1,7 +1,6 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
-// import icons from '../img/icons.svg'; //parcel 1
-import icons from 'url:../img/icons.svg'; //parcel 2
+
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import recipeView from './views/recipeView.js';
@@ -27,7 +26,7 @@ const constrolRecipes = async function () {
     console.log(id);
 
     if (!id) return;
-    renderSpinner(recipeContainer);
+    recipeView.renderSpinner();
 
     //Loading recipe
     await model.loadRecipe(id);
