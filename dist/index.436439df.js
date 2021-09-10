@@ -500,13 +500,14 @@ parcelHelpers.export(exports, "state", ()=>state
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe
 );
 var _regeneratorRuntime = require("regenerator-runtime");
+var _configJs = require("./config.js");
 const state = {
     recipe: {
     }
 };
 const loadRecipe = async function(id) {
     try {
-        const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
+        const res = await fetch(`${_configJs.API_URL}/${id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
         const { recipe  } = data.data;
@@ -526,7 +527,7 @@ const loadRecipe = async function(id) {
     }
 };
 
-},{"regenerator-runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
+},{"regenerator-runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./config.js":"beA2m"}],"cH8Iq":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -1138,7 +1139,14 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"9q0mt":[function(require,module,exports) {
+},{}],"beA2m":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "API_URL", ()=>API_URL
+);
+const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes';
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"9q0mt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // import icons from '../img/icons.svg'; //parcel 1
