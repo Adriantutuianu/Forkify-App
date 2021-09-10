@@ -475,12 +475,7 @@ const timeout = function(s) {
 };
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
-const renderSpinner = function(parentEl) {
-    const markup = `\n  <div class="spinner">\n          <svg>\n            <use href="${_iconsSvgDefault.default}#icon-loader"></use>\n          </svg>\n        </div>\n  `;
-    parentEl.innerHTML = '';
-    parentEl.insertAdjacentHTML('afterbegin', markup);
-};
-const showRecipe = async function() {
+const constrolRecipes = async function() {
     try {
         const id = window.location.hash.slice(1);
         console.log(id);
@@ -1156,9 +1151,17 @@ class RecipeView {
     render(data) {
         this.#data = data;
         const markup = this.#generateMarkup;
-        recipeContainer.innerHTML = '';
-        recipeContainer.insertAdjacentHTML('afterbegin', markup);
+        this.#clear;
+        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
     }
+     #clear() {
+        this.#parentElement.innerHTML = '';
+    }
+    renderSpinner = function(parentEl) {
+        const markup = `\n    <div class="spinner">\n            <svg>\n              <use href="${icons}#icon-loader"></use>\n            </svg>\n          </div>\n    `;
+        parentEl.innerHTML = '';
+        parentEl.insertAdjacentHTML('afterbegin', markup);
+    };
      #generateMarkup() {
         return `\n    <figure class="recipe__fig">\n    <img srthis.#data.image}" crossOrigin = "anonymous" alt="${this.#data.title}" class="recipe__img" />\n    <h1 class="recipe__title">\n      <span>${this.#data.title}</span>\n    </h1>\n  </figure>\n\n  <div class="recipe__details">\n    <div class="recipe__info">\n      <svg class="recipe__info-icon">\n        <use href="${icons}#icon-clock"></use>\n      </svg>\n      <span class="recipe__info-data recipe__info-data--minutes">${this.#data.cookingTime}</span>\n      <span class="recipe__info-text">minutes</span>\n    </div>\n    <div class="recipe__info">\n      <svg class="recipe__info-icon">\n        <use href="${icons}#icon-users"></use>\n      </svg>\n      <span class="recipe__info-data recipe__info-data--people">${this.#data.servings}</span>\n      <span class="recipe__info-text">servings</span>\n\n      <div class="recipe__info-buttons">\n        <button class="btn--tiny btn--increase-servings">\n          <svg>\n            <use href="${icons}#icon-minus-circle"></use>\n          </svg>\n        </button>\n        <button class="btn--tiny btn--increase-servings">\n          <svg>\n            <use href="${icons}#icon-plus-circle"></use>\n          </svg>\n        </button>\n      </div>\n    </div>\n\n    <div class="recipe__user-generated">\n      <svg>\n        <use href="${icons}#icon-user"></use>\n      </svg>\n    </div>\n    <button class="btn--round">\n      <svg class="">\n        <use href="${icons}#icon-bookmark-fill"></use>\n      </svg>\n    </button>\n  </div>\n\n  <div class="recipe__ingredients">\n    <h2 class="heading--2">Recipe ingredients</h2>\n    <ul class="recipe__ingredient-list">\n${this.#data.ingredients.map((ing)=>{
             return `\n  <li class="recipe__ingredient">\n  <svg class="recipe__icon">\n    <use href="${icons}#icon-check"></use>\n  </svg>\n  <div class="recipe__quantity">${ing.quantity}</div>\n  <div class="recipe__description">\n    <span class="recipe__unit">${ing.unit}</span>\n    ${ing.description}\n  </div>\n</li>\n  `;

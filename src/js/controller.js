@@ -21,19 +21,7 @@ const timeout = function (s) {
 
 ///////////////////////////////////////
 
-const renderSpinner = function (parentEl) {
-  const markup = `
-  <div class="spinner">
-          <svg>
-            <use href="${icons}#icon-loader"></use>
-          </svg>
-        </div>
-  `;
-  parentEl.innerHTML = '';
-  parentEl.insertAdjacentHTML('afterbegin', markup);
-};
-
-const showRecipe = async function () {
+const constrolRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
     console.log(id);
