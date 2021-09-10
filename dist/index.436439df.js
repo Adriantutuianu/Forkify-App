@@ -509,9 +509,6 @@ const state = {
 const loadRecipe = async function(id) {
     try {
         const data = await _helpersJs.getJSON(`${_configJs.API_URL}/${id}`);
-        const res = await fetch(`${_configJs.API_URL}/${id}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(`${data.message} (${res.status})`);
         const { recipe  } = data.data;
         state.recipe = {
             id: recipe.id,
@@ -1160,7 +1157,7 @@ const getJSON = async function(url) {
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
         return data;
     } catch (err) {
-        console.log(err);
+        throw err;
     }
 };
 
