@@ -5,7 +5,6 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import recipeView from './views/recipeView.js';
 
-console.log(icons);
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -20,7 +19,7 @@ const timeout = function (s) {
 
 ///////////////////////////////////////
 
-const constrolRecipes = async function () {
+const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
     console.log(id);
@@ -38,6 +37,8 @@ const constrolRecipes = async function () {
   }
 };
 
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
+['hashchange', 'load'].forEach(ev =>
+  window.addEventListener(ev, controlRecipes)
+);
 // window.addEventListener('hashchange', showRecipe);
 // window.addEventListener('load', showRecipe);
