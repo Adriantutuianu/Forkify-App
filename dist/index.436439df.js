@@ -475,7 +475,7 @@ const controlRecipes = async function() {
         //Rendering recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
     } catch (err) {
-        console.log(err);
+        _recipeViewJsDefault.default.renderError();
     }
 };
 const init = function() {
@@ -1178,6 +1178,7 @@ console.log(_fractional.Fraction);
 class RecipeView {
     #parentElement = document.querySelector('.recipe');
     #data;
+    #errorMessage = `We could not find that recipe. Please try another one.`;
     render(data) {
         this.#data = data;
         const markup = this.#generateMarkup();
@@ -1192,7 +1193,7 @@ class RecipeView {
         this.#clear();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
     }
-    renderError(message) {
+    renderError(message = this.#errorMessage) {
         const markup = `\n    <div class="error">\n            <div>\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-alert-triangle"></use>\n              </svg>\n            </div>\n            <p>${message}</p>\n          </div>`;
         this.#clear();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);

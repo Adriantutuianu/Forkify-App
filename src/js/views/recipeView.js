@@ -5,6 +5,7 @@ console.log(Fraction);
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
+  #errorMessage = `We could not find that recipe. Please try another one.`;
 
   render(data) {
     this.#data = data;
@@ -29,7 +30,7 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
-  renderError(message) {
+  renderError(message = this.#errorMessage) {
     const markup = `
     <div class="error">
             <div>
