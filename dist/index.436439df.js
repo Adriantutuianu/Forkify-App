@@ -497,6 +497,10 @@ var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
 const state = {
     recipe: {
+    },
+    search: {
+        query: '',
+        results: []
     }
 };
 const loadRecipe = async function(id) {
@@ -515,13 +519,24 @@ const loadRecipe = async function(id) {
         };
         console.log(state.recipe);
     } catch (err) {
-    // console.error(`${err}🚍🚍🚍`);
+        console.error(`${err}🚍🚍🚍`);
+        throw err;
     }
 };
 const loadSearchResults = async function(query) {
     try {
+        state.search.query = query;
         const data = await _helpersJs.getJSON(`${_configJs.API_URL}?search=${query}`);
         console.log(data);
+        state.search.results = data.data.recipes.map((rec)=>{
+            return {
+                id: rec.id,
+                title: rec.title,
+                publisher: rec.publisher,
+                image: rec.image_url
+            };
+        });
+        console.log(state.search.results);
     } catch (err) {
         console.error(`${err}🚍🚍🚍`);
         throw err;
@@ -1116,7 +1131,7 @@ parcelHelpers.export(exports, "API_URL", ()=>API_URL
 );
 parcelHelpers.export(exports, "TIMEOUT_SEC", ()=>TIMEOUT_SEC
 );
-const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes';
+const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const TIMEOUT_SEC = 10;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"JacNc":[function(require,module,exports) {
