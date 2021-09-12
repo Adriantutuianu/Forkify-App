@@ -1179,6 +1179,7 @@ class RecipeView {
     #parentElement = document.querySelector('.recipe');
     #data;
     #errorMessage = `We could not find that recipe. Please try another one.`;
+    #message = '';
     render(data) {
         this.#data = data;
         const markup = this.#generateMarkup();
@@ -1195,6 +1196,11 @@ class RecipeView {
     }
     renderError(message = this.#errorMessage) {
         const markup = `\n    <div class="error">\n            <div>\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-alert-triangle"></use>\n              </svg>\n            </div>\n            <p>${message}</p>\n          </div>`;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
+    renderMessage(message = this.#message) {
+        const markup = `\n    <div class="message">\n            <div>\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-smile"></use>\n              </svg>\n            </div>\n            <p>${message}</p>\n          </div>`;
         this.#clear();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
     }
