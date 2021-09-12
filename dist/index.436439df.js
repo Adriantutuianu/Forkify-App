@@ -1187,11 +1187,16 @@ class RecipeView {
      #clear() {
         this.#parentElement.innerHTML = '';
     }
-    renderSpinner = function() {
+    renderSpinner() {
         const markup = `\n    <div class="spinner">\n            <svg>\n              <use href="${_iconsSvgDefault.default}#icon-loader"></use>\n            </svg>\n          </div>\n    `;
-        this.#parentElement.innerHTML = '';
+        this.#clear();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-    };
+    }
+    renderError(message) {
+        const markup = `\n    <div class="error">\n            <div>\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-alert-triangle"></use>\n              </svg>\n            </div>\n            <p>${message}</p>\n          </div>`;
+        this.#clear();
+        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+    }
     addHandleRender(handler) {
         [
             'hashchange',
