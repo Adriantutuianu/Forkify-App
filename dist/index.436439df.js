@@ -475,7 +475,7 @@ const controlRecipes = async function() {
         //Rendering recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
     } catch (err) {
-        alert(err);
+        console.log(err);
     }
 };
 const init = function() {
@@ -1102,7 +1102,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API_URL", ()=>API_URL
 );
+parcelHelpers.export(exports, "TIMEOUT_SEC", ()=>TIMEOUT_SEC
+);
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes';
+const TIMEOUT_SEC = 10;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"JacNc":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -1141,6 +1144,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getJSON", ()=>getJSON
 );
+var _configJs = require("./config.js");
 const timeout = function(s) {
     return new Promise(function(_, reject) {
         setTimeout(function() {
@@ -1153,7 +1157,7 @@ const getJSON = async function(url) {
         const fetchPro = fetch(url);
         const res = await Promise.race([
             fetchPro,
-            timeout(10)
+            timeout(_configJs.TIMEOUT_SEC)
         ]);
         const data = await res.json();
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
@@ -1163,7 +1167,7 @@ const getJSON = async function(url) {
     }
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"9q0mt":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./config.js":"beA2m"}],"9q0mt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // import icons from '../img/icons.svg'; //parcel 1
