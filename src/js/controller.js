@@ -9,7 +9,6 @@ import recipeView from './views/recipeView.js';
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
-    console.log(id);
 
     if (!id) return;
     recipeView.renderSpinner();
@@ -28,16 +27,16 @@ const controlSearchResults = async function () {
   try {
     const query = searchView.getQuery();
     if (!query) return;
-    await model.loadSearchResults('query');
+
+    await model.loadSearchResults(query);
     console.log(model.state.search.results);
   } catch (err) {
     console.log(err);
   }
 };
 
-controlSearchResults();
-
 const init = function () {
   recipeView.addHandleRender(controlRecipes);
+  searchView.addHandlerSearch(controlSearchResults);
 };
 init();

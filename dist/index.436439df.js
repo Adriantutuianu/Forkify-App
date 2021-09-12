@@ -466,7 +466,6 @@ var _runtime = require("regenerator-runtime/runtime");
 const controlRecipes = async function() {
     try {
         const id = window.location.hash.slice(1);
-        console.log(id);
         if (!id) return;
         _recipeViewJsDefault.default.renderSpinner();
         //Loading recipe
@@ -481,15 +480,15 @@ const controlSearchResults = async function() {
     try {
         const query = _searchViewJsDefault.default.getQuery();
         if (!query) return;
-        await _modelJs.loadSearchResults('query');
+        await _modelJs.loadSearchResults(query);
         console.log(_modelJs.state.search.results);
     } catch (err) {
         console.log(err);
     }
 };
-controlSearchResults();
 const init = function() {
     _recipeViewJsDefault.default.addHandleRender(controlRecipes);
+    _searchViewJsDefault.default.addHandlerSearch(controlSearchResults);
 };
 init();
 
@@ -546,7 +545,7 @@ const loadSearchResults = async function(query) {
                 image: rec.image_url
             };
         });
-        console.log(state.search.results);
+    // console.log(state.search.results);
     } catch (err) {
         console.error(`${err}🚍🚍🚍`);
         throw err;
@@ -1210,7 +1209,6 @@ parcelHelpers.defineInteropFlag(exports);
 var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 var _fractional = require("fractional");
-console.log(_fractional.Fraction);
 class RecipeView {
     #parentElement = document.querySelector('.recipe');
     #data;
@@ -13340,6 +13338,12 @@ class SearchView {
     #parentEl = document.querySelector('.search');
     getQuery() {
         return this.#parentEl.querySelector('.search__field').value;
+    }
+    addHandlerSearch(handler) {
+        this.#parentEl.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handler();
+        });
     }
 }
 exports.default = new SearchView();
