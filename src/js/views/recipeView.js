@@ -4,8 +4,9 @@ import View from './View.js';
 import icons from 'url:../../img/icons.svg'; //parcel 2
 import { Fraction } from 'fractional';
 
-class RecipeView extends View {
+class RecipeView {
   _parentElement = document.querySelector('.recipe');
+  _data;
   _errorMessage = `We could not find that recipe. Please try another one.`;
   _message = '';
 
