@@ -13388,7 +13388,7 @@ class ResultsView extends _viewJsDefault.default {
         return this._data.map(this._generateMarkupPreview).join('');
     }
     _generateMarkupPreview(result) {
-        return `\n    <li class="preview">\n            <a class="preview__link preview__link--active" href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="Test" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n                <div class="preview__user-generated">\n                  <svg>\n                    <use href="${_iconsSvgDefault.default}#icon-user"></use>\n                  </svg>\n                </div>\n              </div>\n            </a>\n          </li>\n    `;
+        return `\n    <li class="preview">\n            <a class="preview__link " href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="${result.title}" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n              </div>\n            </a>\n          </li>\n    `;
     }
 }
 exports.default = new ResultsView();
