@@ -13379,18 +13379,20 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
 var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
 class ResultsView extends _viewJsDefault.default {
     _parentElement = document.querySelector('.results');
     _generateMarkup() {
         console.log(this._data);
         return this._data.map(this._generateMarkupPreview).join('');
     }
-    _generateMarkupPreview() {
-        return `\n    <li class="preview">\n            <a class="preview__link preview__link--active" href="#23456">\n              <figure class="preview__fig">\n                <img src="src/img/test-1.jpg" alt="Test" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">Pasta with Tomato Cream ...</h4>\n                <p class="preview__publisher">The Pioneer Woman</p>\n                <div class="preview__user-generated">\n                  <svg>\n                    <use href="src/img/icons.svg#icon-user"></use>\n                  </svg>\n                </div>\n              </div>\n            </a>\n          </li>\n    `;
+    _generateMarkupPreview(result) {
+        return `\n    <li class="preview">\n            <a class="preview__link preview__link--active" href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="Test" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n                <div class="preview__user-generated">\n                  <svg>\n                    <use href="${_iconsSvgDefault.default}#icon-user"></use>\n                  </svg>\n                </div>\n              </div>\n            </a>\n          </li>\n    `;
     }
 }
 exports.default = new ResultsView();
 
-},{"./View.js":"8rtS4","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
+},{"./View.js":"8rtS4","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","url:../../img/icons.svg":"iwCpK"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
 
 //# sourceMappingURL=index.436439df.js.map
