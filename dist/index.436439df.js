@@ -509,6 +509,8 @@ parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe
 );
 parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults
 );
+parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage
+);
 var _regeneratorRuntime = require("regenerator-runtime");
 var _configJs = require("./config.js");
 var _helpersJs = require("./helpers.js");
@@ -557,6 +559,11 @@ const loadSearchResults = async function(query) {
         console.error(`${err}🚍🚍🚍`);
         throw err;
     }
+};
+const getSearchResultsPage = function(page) {
+    const start = 0;
+    const end = 9;
+    return state.search.results.slice(start, end);
 };
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
