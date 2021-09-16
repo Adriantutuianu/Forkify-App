@@ -1643,13 +1643,13 @@ class PaginationView extends _viewJsDefault.default {
         const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
         console.log(numPages);
         //Page 1, and there are other pages
-        if (curPage === 1 && numPages > 1) return 'page 1, others';
+        if (curPage === 1 && numPages > 1) return `\n      <button class="btn--inline pagination__btn--next">\n            <span>Page ${curPage + 1}</span>\n            <svg class="search__icon">\n              <use href=${_iconsSvgDefault.default}></use>\n            </svg>\n          </button>`;
         //Last page
         if (curPage === numPages) return `\n      <button class="btn--inline pagination__btn--prev">\n            <svg class="search__icon">\n              <use href=${_iconsSvgDefault.default}></use>\n            </svg>\n            <span>Page ${curPage - 1}</span>\n          </button>`;
         //Other page
-        if (curPage < numPages) return 'other page';
+        if (curPage < numPages) return `\n        <button class="btn--inline pagination__btn--prev">\n              <svg class="search__icon">\n                <use href=${_iconsSvgDefault.default}></use>\n              </svg>\n              <span>Page ${curPage - 1}</span>\n            </button>\n            <button class="btn--inline pagination__btn--next">\n            <span>Page ${curPage + 1}</span>\n            <svg class="search__icon">\n              <use href=${_iconsSvgDefault.default}></use>\n            </svg>\n          </button>`;
         //Page 1, and there are no other pages
-        return 'only 1 page';
+        return '';
     }
 }
 exports.default = new PaginationView();
