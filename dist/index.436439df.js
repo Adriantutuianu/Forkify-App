@@ -507,7 +507,7 @@ const init = function() {
 };
 init();
 
-},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./views/paginationView.js":"c2v8w"}],"6Yfb5":[function(require,module,exports) {
+},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","./views/paginationView.js":"c2v8w","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"6Yfb5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state
@@ -1628,6 +1628,26 @@ class ResultsView extends _viewJsDefault.default {
     }
 }
 exports.default = new ResultsView();
+
+},{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"c2v8w":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class PaginationView extends _viewJsDefault.default {
+    _parentElement = document.querySelector('.pagination');
+    _generateMarkup() {
+        const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
+        console.log(numPages);
+    //Page 1, and there are other pages
+    //Page 1, and there are no other pages
+    //Last page
+    //Other page
+    }
+}
+exports.default = new PaginationView();
 
 },{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"eIyVg":[function(require,module,exports) {
 require('../modules/es.symbol');
@@ -13415,24 +13435,6 @@ $({
     }
 });
 
-},{"../internals/export":"2mZbc"}],"c2v8w":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _viewJs = require("./View.js");
-var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
-var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class PaginationView extends _viewJsDefault.default {
-    _parentElement = document.querySelector('.pagination');
-    _generateMarkup() {
-    //Page 1, and there are other pages
-    //Page 1, and there are no other pages
-    //Last page
-    //Other page
-    }
-}
-exports.default = new PaginationView();
-
-},{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
+},{"../internals/export":"2mZbc"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
 
 //# sourceMappingURL=index.436439df.js.map
