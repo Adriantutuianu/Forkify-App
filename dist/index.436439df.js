@@ -500,7 +500,7 @@ const init = function() {
 };
 init();
 
-},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./views/resultsView.js":"a6WEO"}],"6Yfb5":[function(require,module,exports) {
+},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"6Yfb5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state
@@ -519,7 +519,8 @@ const state = {
     },
     search: {
         query: '',
-        results: []
+        results: [],
+        resultsPerPage: _configJs.RES__PER_PAGE
     }
 };
 const loadRecipe = async function(id) {
@@ -561,8 +562,8 @@ const loadSearchResults = async function(query) {
     }
 };
 const getSearchResultsPage = function(page) {
-    const start = (page - 1) * 10; //0;
-    const end = page * 10; //9;
+    const start = (page - 1) * state.search.resultsPerPage; //0;
+    const end = page * state.search.resultsPerPage; //9;
     return state.search.results.slice(start, end);
 };
 
@@ -1153,8 +1154,11 @@ parcelHelpers.export(exports, "API_URL", ()=>API_URL
 );
 parcelHelpers.export(exports, "TIMEOUT_SEC", ()=>TIMEOUT_SEC
 );
+parcelHelpers.export(exports, "RES__PER_PAGE", ()=>RES__PER_PAGE
+);
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const TIMEOUT_SEC = 10;
+const RES__PER_PAGE = 10;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"JacNc":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -1595,7 +1599,28 @@ class SearchView {
 }
 exports.default = new SearchView();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"eIyVg":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"a6WEO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class ResultsView extends _viewJsDefault.default {
+    _parentElement = document.querySelector('.results');
+    _errorMessage = `No recipes found for your query. Please try again!`;
+    _message = '';
+    _generateMarkup() {
+        console.log(this._data);
+        return this._data.map(this._generateMarkupPreview).join('');
+    }
+    _generateMarkupPreview(result) {
+        return `\n    <li class="preview">\n            <a class="preview__link " href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="${result.title}" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n              </div>\n            </a>\n          </li>\n    `;
+    }
+}
+exports.default = new ResultsView();
+
+},{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"eIyVg":[function(require,module,exports) {
 require('../modules/es.symbol');
 require('../modules/es.symbol.description');
 require('../modules/es.symbol.async-iterator');
@@ -13381,27 +13406,6 @@ $({
     }
 });
 
-},{"../internals/export":"2mZbc"}],"a6WEO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _viewJs = require("./View.js");
-var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
-var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class ResultsView extends _viewJsDefault.default {
-    _parentElement = document.querySelector('.results');
-    _errorMessage = `No recipes found for your query. Please try again!`;
-    _message = '';
-    _generateMarkup() {
-        console.log(this._data);
-        return this._data.map(this._generateMarkupPreview).join('');
-    }
-    _generateMarkupPreview(result) {
-        return `\n    <li class="preview">\n            <a class="preview__link " href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="${result.title}" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n              </div>\n            </a>\n          </li>\n    `;
-    }
-}
-exports.default = new ResultsView();
-
-},{"./View.js":"8rtS4","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","url:../../img/icons.svg":"iwCpK"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
+},{"../internals/export":"2mZbc"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
 
 //# sourceMappingURL=index.436439df.js.map
