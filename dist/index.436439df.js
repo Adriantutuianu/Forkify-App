@@ -494,7 +494,7 @@ const controlSearchResults = async function() {
         await _modelJs.loadSearchResults(query);
         //3- Render results
         // resultsView.render(model.state.search.results);
-        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage(4));
+        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage(3));
         //4- Render innitial pagination buttons
         _paginationViewJsDefault.default.render(_modelJs.state.search);
     } catch (err) {
@@ -502,7 +502,10 @@ const controlSearchResults = async function() {
     }
 };
 const controlPagination = function(goToPage) {
-    console.log(goToPage);
+    //1- Render NEW results
+    _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage(goToPage));
+    //2- Render new pagination buttons
+    _paginationViewJsDefault.default.render(_modelJs.state.search);
 };
 const init = function() {
     _recipeViewJsDefault.default.addHandleRender(controlRecipes);
