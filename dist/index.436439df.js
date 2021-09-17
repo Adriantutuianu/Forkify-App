@@ -494,15 +494,15 @@ const controlSearchResults = async function() {
         await _modelJs.loadSearchResults(query);
         //3- Render results
         // resultsView.render(model.state.search.results);
-        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage(6));
+        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage(4));
         //4- Render innitial pagination buttons
         _paginationViewJsDefault.default.render(_modelJs.state.search);
     } catch (err) {
         console.log(err);
     }
 };
-const controlPagination = function() {
-    console.log('Pag controller');
+const controlPagination = function(goToPage) {
+    console.log(goToPage);
 };
 const init = function() {
     _recipeViewJsDefault.default.addHandleRender(controlRecipes);
@@ -1644,13 +1644,10 @@ class PaginationView extends _viewJsDefault.default {
     _parentElement = document.querySelector('.pagination');
     addHandlerClick(handler) {
         this._parentElement.addEventListener('click', function(e) {
-            console.log(e);
             const btn = e.target.closest('.btn--inline');
-            console.log(btn);
-            handler();
-            console.log(btn.dataset);
-            const goToPage = btn.dataset.goto;
-            console.log(goToPage);
+            if (!btn) return;
+            const goToPage = +btn.dataset.goto;
+            handler(goToPage);
         });
     }
     _generateMarkup() {
