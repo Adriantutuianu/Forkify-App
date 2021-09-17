@@ -494,7 +494,7 @@ const controlSearchResults = async function() {
         await _modelJs.loadSearchResults(query);
         //3- Render results
         // resultsView.render(model.state.search.results);
-        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage(3));
+        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage());
         //4- Render innitial pagination buttons
         _paginationViewJsDefault.default.render(_modelJs.state.search);
     } catch (err) {
@@ -1656,7 +1656,6 @@ class PaginationView extends _viewJsDefault.default {
     _generateMarkup() {
         const curPage = this._data.page;
         const numPages = Math.ceil(this._data.results.length / this._data.resultsPerPage);
-        console.log(numPages);
         // Page 1, and there are other pages
         if (curPage === 1 && numPages > 1) return `\n        <button data-goto="${curPage + 1}" class="btn--inline pagination__btn--next">\n          <span>Page ${curPage + 1}</span>\n          <svg class="search__icon">\n            <use href="${_iconsSvgDefault.default}#icon-arrow-right"></use>\n          </svg>\n        </button>\n      `;
         // Last page
