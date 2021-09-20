@@ -479,8 +479,6 @@ const controlRecipes = async function() {
         await _modelJs.loadRecipe(id);
         //Rendering recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
-        // TEST
-        controlServings();
     } catch (err) {
         _recipeViewJsDefault.default.renderError();
     }
