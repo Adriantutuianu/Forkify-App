@@ -479,6 +479,8 @@ const controlRecipes = async function() {
         await _modelJs.loadRecipe(id);
         //Rendering recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
+        // TEST
+        controlServings();
     } catch (err) {
         _recipeViewJsDefault.default.renderError();
     }
@@ -509,7 +511,7 @@ const controlPagination = function(goToPage) {
 };
 const controlServings = function() {
     // Update the recipe servings (in state)
-    _modelJs.updateServings(6);
+    _modelJs.updateServings(8);
     //Update the recipe view
     _recipeViewJsDefault.default.render(_modelJs.state.recipe);
 };
@@ -591,7 +593,7 @@ const getSearchResultsPage = function(page = state.search.page) {
     return state.search.results.slice(start, end);
 };
 const updateServings = function(newServings) {
-    state.recipe.ingredients.foreach((ing)=>{
+    state.recipe.ingredients.forEach((ing)=>{
         ing.quantity = ing.quantity * newServings / state.recipe.servings;
     //newQt = oldQt * newServings / oldServings
     });
