@@ -71,6 +71,7 @@ const controlServings = function () {
 
 const init = function () {
   recipeView.addHandleRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
