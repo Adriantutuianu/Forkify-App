@@ -507,6 +507,11 @@ const controlPagination = function(goToPage) {
     //2- Render new pagination buttons
     _paginationViewJsDefault.default.render(_modelJs.state.search);
 };
+const controlServings = function() {
+    // Update the recipe servings (in state)
+    _modelJs.updateServings(6);
+//Update the recipe view
+};
 const init = function() {
     _recipeViewJsDefault.default.addHandleRender(controlRecipes);
     _searchViewJsDefault.default.addHandlerSearch(controlSearchResults);
@@ -524,6 +529,8 @@ parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe
 parcelHelpers.export(exports, "loadSearchResults", ()=>loadSearchResults
 );
 parcelHelpers.export(exports, "getSearchResultsPage", ()=>getSearchResultsPage
+);
+parcelHelpers.export(exports, "updateServings", ()=>updateServings
 );
 var _regeneratorRuntime = require("regenerator-runtime");
 var _configJs = require("./config.js");
@@ -581,6 +588,13 @@ const getSearchResultsPage = function(page = state.search.page) {
     const start = (page - 1) * state.search.resultsPerPage; //0;
     const end = page * state.search.resultsPerPage; //9;
     return state.search.results.slice(start, end);
+};
+const updateServings = function(newServings) {
+    state.recipe.ingredients.foreach((ing)=>{
+        ing.quantity = ing.quantity * newServings / state.recipe.servings;
+    //newQt = oldQt * newServings / oldServings
+    });
+    state.recipe.servings = newServings;
 };
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
