@@ -475,6 +475,8 @@ const controlRecipes = async function() {
         const id = window.location.hash.slice(1);
         if (!id) return;
         _recipeViewJsDefault.default.renderSpinner();
+        // Update results view to mark selected search result
+        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage());
         //Loading recipe
         await _modelJs.loadRecipe(id);
         //Rendering recipe
@@ -1669,11 +1671,12 @@ class ResultsView extends _viewJsDefault.default {
     _errorMessage = `No recipes found for your query. Please try again!`;
     _message = '';
     _generateMarkup() {
-        // console.log(this._data);
+        console.log(this._data);
         return this._data.map(this._generateMarkupPreview).join('');
     }
     _generateMarkupPreview(result) {
-        return `\n    <li class="preview">\n            <a class="preview__link " href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="${result.title}" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n              </div>\n            </a>\n          </li>\n    `;
+        const id = window.location.hash.slice(1);
+        return `\n    <li class="preview">\n            <a class="preview__link ${result.id === id ? 'preview__link--active' : ''}" href="#${result.id}">\n              <figure class="preview__fig">\n                <img src="${result.image}" crossOrigin = "anonymous" alt="${result.title}" />\n              </figure>\n              <div class="preview__data">\n                <h4 class="preview__title">${result.title}</h4>\n                <p class="preview__publisher">${result.publisher}</p>\n              </div>\n            </a>\n          </li>\n    `;
     }
 }
 exports.default = new ResultsView();
