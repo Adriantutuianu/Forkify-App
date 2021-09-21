@@ -1316,7 +1316,10 @@ class View {
         newElements.forEach((newEl, i)=>{
             const curEl = curElements[i];
             console.log(curEl, newEl.isEqualNode(curEl));
+            //Updates changed TEXT
             if (!newEl.isEqualNode(curEl) && newEl.firstChild.nodeValue.trim() !== '') curEl.textContent = newEl.textContent;
+            //Updates changed ATTRIBUTES
+            if (!newEl.isEqualNode(curEl)) console.log(newEl.attributes);
         });
     }
     _clear() {
