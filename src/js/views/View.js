@@ -35,7 +35,10 @@ export default class View {
         curEl.textContent = newEl.textContent;
       }
       //Updates changed ATTRIBUTES
-      if (!newEl.isEqualNode(curEl)) console.log(newEl.attributes);
+      if (!newEl.isEqualNode(curEl))
+        Array.from(newEl.attributes).forEach(attr =>
+          curEl.setAttribute(attr.name, attr.value)
+        );
     });
   }
 
