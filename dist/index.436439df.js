@@ -511,7 +511,8 @@ const controlServings = function(newServings) {
     // Update the recipe servings (in state)
     _modelJs.updateServings(newServings);
     //Update the recipe view
-    _recipeViewJsDefault.default.render(_modelJs.state.recipe);
+    // recipeView.render(model.state.recipe);
+    _recipeViewJsDefault.default.update(_modelJs.state.recipe);
 };
 const init = function() {
     _recipeViewJsDefault.default.addHandleRender(controlRecipes);
@@ -1305,6 +1306,12 @@ class View {
         this._clear();
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
+    update(data) {
+        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
+        this._data = data;
+        const newMarkup = this._generateMarkup();
+        const newDOM = document.createRange().createContextualFragment(newMarkup);
+    }
     _clear() {
         this._parentElement.innerHTML = '';
     }
@@ -1651,7 +1658,7 @@ class ResultsView extends _viewJsDefault.default {
     _errorMessage = `No recipes found for your query. Please try again!`;
     _message = '';
     _generateMarkup() {
-        console.log(this._data);
+        // console.log(this._data);
         return this._data.map(this._generateMarkupPreview).join('');
     }
     _generateMarkupPreview(result) {
