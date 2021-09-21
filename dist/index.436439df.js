@@ -476,7 +476,7 @@ const controlRecipes = async function() {
         if (!id) return;
         _recipeViewJsDefault.default.renderSpinner();
         // Update results view to mark selected search result
-        _resultsViewJsDefault.default.render(_modelJs.getSearchResultsPage());
+        _resultsViewJsDefault.default.update(_modelJs.getSearchResultsPage());
         //Loading recipe
         await _modelJs.loadRecipe(id);
         //Rendering recipe
@@ -1309,7 +1309,6 @@ class View {
         this._parentElement.insertAdjacentHTML('afterbegin', markup);
     }
     update(data) {
-        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
         this._data = data;
         const newMarkup = this._generateMarkup();
         const newDOM = document.createRange().createContextualFragment(newMarkup);
