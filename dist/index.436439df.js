@@ -517,7 +517,8 @@ const controlServings = function(newServings) {
     _recipeViewJsDefault.default.update(_modelJs.state.recipe);
 };
 const controlAddBookmark = function() {
-    _modelJs.addBookmark(_modelJs.state.recipe);
+    if (!_modelJs.state.recipe.bookmarked) _modelJs.addBookmark(_modelJs.state.recipe);
+    else _modelJs.deleteBookmark(_modelJs.state.recipe.id);
     console.log(_modelJs.state.recipe);
     _recipeViewJsDefault.default.update(_modelJs.state.recipe);
 };
@@ -628,7 +629,7 @@ const deleteBookmark = function(id) {
     );
     state.bookmarks.splice(index, 1);
     //Mark current recipe as NOT bookmarked
-    if (recipe.id === state.recipe.id) state.recipe.bookmarked = false;
+    if (id === state.recipe.id) state.recipe.bookmarked = false;
 };
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
