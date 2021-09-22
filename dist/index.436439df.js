@@ -608,6 +608,8 @@ const updateServings = function(newServings) {
 const addBookmark = function(recipe) {
     //Add bookmark
     state.bookmarks.push(recipe);
+    //Mark current recipe as bookmark
+    if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
 };
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
