@@ -479,13 +479,15 @@ const controlRecipes = async function() {
         _recipeViewJsDefault.default.renderSpinner();
         // Update results view to mark selected search result
         _resultsViewJsDefault.default.update(_modelJs.getSearchResultsPage());
-        _bookmarksViewDefault.default.update(_modelJs.state.bookmarks);
         //Loading recipe
         await _modelJs.loadRecipe(id);
         //Rendering recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
+        //Updating bookmarks View
+        _bookmarksViewDefault.default.update(_modelJs.state.bookmarks);
     } catch (err) {
         _recipeViewJsDefault.default.renderError();
+        console.error(err);
     }
 };
 ///
@@ -528,7 +530,11 @@ const controlAddBookmark = function() {
     //3 Render bookmarks
     _bookmarksViewDefault.default.render(_modelJs.state.bookmarks);
 };
+const controlBookmarks = function() {
+    _bookmarksViewDefault.default.render(_modelJs.state.bookmarks);
+};
 const init = function() {
+    _bookmarksViewDefault.default.addHandlerRender(controlBookmarks);
     _recipeViewJsDefault.default.addHandleRender(controlRecipes);
     _recipeViewJsDefault.default.addHandlerUpdateServings(controlServings);
     _recipeViewJsDefault.default.addHandlerAddBookmark(controlAddBookmark);
@@ -647,7 +653,6 @@ const init = function() {
     if (storage) state.bookmarks = JSON.parse(storage);
 };
 init();
-console.log(state.bookmarks);
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
 /**
@@ -1727,7 +1732,6 @@ class ResultsView extends _viewJsDefault.default {
     _errorMessage = `No recipes found for your query. Please try again!`;
     _message = '';
     _generateMarkup() {
-        console.log(this._data);
         return this._data.map((result)=>_previewViewJsDefault.default.render(result, false)
         ).join('');
     }
@@ -13581,8 +13585,10 @@ class BookmarksView extends _viewJsDefault.default {
     _parentElement = document.querySelector('.bookmarks__list');
     _errorMessage = `No bookmarks yet. Find a nice recipe and bookmark it :)`;
     _message = '';
+    addHandlerRender(handler) {
+        window.addEventListener('load', handler);
+    }
     _generateMarkup() {
-        console.log(this._data);
         return this._data.map((bookmark)=>_previewViewJsDefault.default.render(bookmark, false)
         ).join('');
     }
