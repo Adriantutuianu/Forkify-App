@@ -479,12 +479,12 @@ const controlRecipes = async function() {
         _recipeViewJsDefault.default.renderSpinner();
         // Update results view to mark selected search result
         _resultsViewJsDefault.default.update(_modelJs.getSearchResultsPage());
+        //Updating bookmarks View
+        _bookmarksViewDefault.default.update(_modelJs.state.bookmarks);
         //Loading recipe
         await _modelJs.loadRecipe(id);
         //Rendering recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
-        //Updating bookmarks View
-        _bookmarksViewDefault.default.update(_modelJs.state.bookmarks);
     } catch (err) {
         _recipeViewJsDefault.default.renderError();
         console.error(err);
