@@ -543,7 +543,7 @@ const init = function() {
 };
 init();
 
-},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","./views/paginationView.js":"c2v8w","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./views/bookmarksView":"cUfi0"}],"6Yfb5":[function(require,module,exports) {
+},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","./views/paginationView.js":"c2v8w","./views/bookmarksView":"cUfi0","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"6Yfb5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state
@@ -655,8 +655,7 @@ const init = function() {
 init();
 const clearBookmarks = function() {
     localStorage.clear('bookmarks');
-};
-clearBookmarks();
+}; // clearBookmarks();
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
 /**
@@ -1742,7 +1741,7 @@ class ResultsView extends _viewJsDefault.default {
 }
 exports.default = new ResultsView();
 
-},{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./previewView.js":"knRyY"}],"knRyY":[function(require,module,exports) {
+},{"./View.js":"8rtS4","./previewView.js":"knRyY","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"knRyY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _viewJs = require("./View.js");
@@ -1790,7 +1789,30 @@ class PaginationView extends _viewJsDefault.default {
 }
 exports.default = new PaginationView();
 
-},{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"eIyVg":[function(require,module,exports) {
+},{"./View.js":"8rtS4","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cUfi0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _viewJs = require("./View.js");
+var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
+var _previewViewJs = require("./previewView.js");
+var _previewViewJsDefault = parcelHelpers.interopDefault(_previewViewJs);
+var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class BookmarksView extends _viewJsDefault.default {
+    _parentElement = document.querySelector('.bookmarks__list');
+    _errorMessage = `No bookmarks yet. Find a nice recipe and bookmark it :)`;
+    _message = '';
+    addHandlerRender(handler) {
+        window.addEventListener('load', handler);
+    }
+    _generateMarkup() {
+        return this._data.map((bookmark)=>_previewViewJsDefault.default.render(bookmark, false)
+        ).join('');
+    }
+}
+exports.default = new BookmarksView();
+
+},{"./View.js":"8rtS4","./previewView.js":"knRyY","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"eIyVg":[function(require,module,exports) {
 require('../modules/es.symbol');
 require('../modules/es.symbol.description');
 require('../modules/es.symbol.async-iterator');
@@ -13576,29 +13598,6 @@ $({
     }
 });
 
-},{"../internals/export":"2mZbc"}],"cUfi0":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _viewJs = require("./View.js");
-var _viewJsDefault = parcelHelpers.interopDefault(_viewJs);
-var _previewViewJs = require("./previewView.js");
-var _previewViewJsDefault = parcelHelpers.interopDefault(_previewViewJs);
-var _iconsSvg = require("url:../../img/icons.svg"); //parcel 2
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class BookmarksView extends _viewJsDefault.default {
-    _parentElement = document.querySelector('.bookmarks__list');
-    _errorMessage = `No bookmarks yet. Find a nice recipe and bookmark it :)`;
-    _message = '';
-    addHandlerRender(handler) {
-        window.addEventListener('load', handler);
-    }
-    _generateMarkup() {
-        return this._data.map((bookmark)=>_previewViewJsDefault.default.render(bookmark, false)
-        ).join('');
-    }
-}
-exports.default = new BookmarksView();
-
-},{"./View.js":"8rtS4","./previewView.js":"knRyY","url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
+},{"../internals/export":"2mZbc"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire3a11")
 
 //# sourceMappingURL=index.436439df.js.map
