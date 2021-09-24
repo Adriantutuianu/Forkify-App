@@ -23,7 +23,12 @@ export const getJSON = async function (url) {
 
 export const sendJSON = async function (url) {
   try {
-    const fetchPro = fetch(url);
+    const fetchPro = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]);
     const data = await res.json();
 
