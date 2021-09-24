@@ -541,6 +541,7 @@ const controlAddRecipe = async function(newRecipe) {
     try {
         //Upload the new recipe data
         await _modelJs.uploadRecipe(newRecipe);
+        console.log(_modelJs.state.recipe);
     } catch (err) {
         console.error('🚲🛹', err);
         _addRecipeViewJsDefault.default.renderError(err.message);
@@ -600,7 +601,10 @@ const createRecipeObject = function(data) {
         image: recipe.image_url,
         servings: recipe.servings,
         cookingTime: recipe.cooking_time,
-        ingredients: recipe.ingredients
+        ingredients: recipe.ingredients,
+        ...recipe.key && {
+            key: recipe.key
+        }
     };
 };
 const loadRecipe = async function(id) {
@@ -699,6 +703,7 @@ const uploadRecipe = async function(newRecipe) {
         };
         const data = await _helpersJs.sendJSON(`${_configJs.API_URL}?key=${_configJs.KEY}`, recipe);
         state.recipe = createRecipeObject(data);
+        addBookmark(state.recipe);
     } catch (err) {
         throw err;
     }
