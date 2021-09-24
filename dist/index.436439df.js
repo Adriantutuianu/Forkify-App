@@ -545,6 +545,8 @@ const controlAddRecipe = async function(newRecipe) {
         console.log(_modelJs.state.recipe);
         //Render recipe
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
+        //Success message
+        _addRecipeViewJsDefault.default.renderMessage();
         //Close form window
         setTimeout(function() {
             _addRecipeViewJsDefault.default.toggleWindow();
