@@ -2,15 +2,14 @@ import View from './View.js';
 import icons from 'url:../../img/icons.svg'; //parcel 2
 
 class AddRecipeView extends View {
-  _parentElement = document.querySelector('.pagination');
+  _parentElement = document.querySelector('.upload');
 
-  _generateMarkup() {
-   
-    }
+  _window = document.querySelector('.add-recipe-window');
+  _overlay = document.querySelector('.overlay');
+  _btnOpen = document.querySelector('.nav__btn--add-recipe');
+  _btnClose = document.querySelector('.nav__btn--close-modal');
 
-    // Page 1, and there are NO other pages
-    return '';
-  }
+  _generateMarkup() {}
 }
 
 export default new AddRecipeView();
