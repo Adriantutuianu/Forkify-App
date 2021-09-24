@@ -540,6 +540,8 @@ const controlBookmarks = function() {
 };
 const controlAddRecipe = async function(newRecipe) {
     try {
+        //Show loading spinner
+        _addRecipeViewJsDefault.default.renderSpinner();
         //Upload the new recipe data
         await _modelJs.uploadRecipe(newRecipe);
         console.log(_modelJs.state.recipe);
