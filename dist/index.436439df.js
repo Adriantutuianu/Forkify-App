@@ -539,7 +539,8 @@ const controlBookmarks = function() {
 };
 const controlAddRecipe = function(newRecipe) {
     console.log(newRecipe);
-//Upload the new recipe data
+    //Upload the new recipe data
+    _modelJs.uploadRecipe(newRecipe);
 };
 const init = function() {
     _bookmarksViewDefault.default.addHandlerRender(controlBookmarks);
@@ -568,6 +569,8 @@ parcelHelpers.export(exports, "updateServings", ()=>updateServings
 parcelHelpers.export(exports, "addBookmark", ()=>addBookmark
 );
 parcelHelpers.export(exports, "deleteBookmark", ()=>deleteBookmark
+);
+parcelHelpers.export(exports, "uploadRecipe", ()=>uploadRecipe
 );
 var _regeneratorRuntime = require("regenerator-runtime");
 var _configJs = require("./config.js");
@@ -664,7 +667,12 @@ const init = function() {
 init();
 const clearBookmarks = function() {
     localStorage.clear('bookmarks');
-}; // clearBookmarks();
+};
+const uploadRecipe = async function(newRecipe) {
+    const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].startsWith('ingredient') && entry[1] !== ''
+    );
+    console.log(ingredients);
+};
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
 /**
