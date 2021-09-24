@@ -1354,13 +1354,14 @@ const getJSON = async function(url) {
         throw err;
     }
 };
-const sendJSON = async function(url) {
+const sendJSON = async function(url, uploadData) {
     try {
         const fetchPro = fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(uploadData)
         });
         const res = await Promise.race([
             fetchPro,
