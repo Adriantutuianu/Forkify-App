@@ -590,20 +590,23 @@ const state = {
     },
     bookmarks: []
 };
+const createRecipeObject = function(data) {
+    const { recipe  } = data.data;
+    return {
+        id: recipe.id,
+        title: recipe.title,
+        publisher: recipe.publisher,
+        sourceUrl: recipe.source_url,
+        image: recipe.image_url,
+        servings: recipe.servings,
+        cookingTime: recipe.cooking_time,
+        ingredients: recipe.ingredients
+    };
+};
 const loadRecipe = async function(id) {
     try {
         const data = await _helpersJs.getJSON(`${_configJs.API_URL}${id}`);
-        const { recipe  } = data.data;
-        state.recipe = {
-            id: recipe.id,
-            title: recipe.title,
-            publisher: recipe.publisher,
-            sourceUrl: recipe.source_url,
-            image: recipe.image_url,
-            servings: recipe.servings,
-            cookingTime: recipe.cooking_time,
-            ingredients: recipe.ingredients
-        };
+        state.recipe = createRecipeObject(data);
         if (state.bookmarks.some((bookmark)=>bookmark.id === id
         )) state.recipe.bookmarked = true;
         else state.recipe.bookmarked = false;
@@ -694,7 +697,8 @@ const uploadRecipe = async function(newRecipe) {
             servings: +newRecipe.servings,
             ingredients
         };
-        console.log(recipe);
+        const data = await _helpersJs.sendJSON(`${_configJs.API_URL}?key=${_configJs.KEY}`, recipe);
+        state.recipe = createRecipeObject(data);
     } catch (err) {
         throw err;
     }
@@ -1289,9 +1293,12 @@ parcelHelpers.export(exports, "TIMEOUT_SEC", ()=>TIMEOUT_SEC
 );
 parcelHelpers.export(exports, "RES__PER_PAGE", ()=>RES__PER_PAGE
 );
+parcelHelpers.export(exports, "KEY", ()=>KEY
+);
 const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 const TIMEOUT_SEC = 10;
 const RES__PER_PAGE = 10;
+const KEY = '9de14a7c-4062-4c33-a0e6-2d2e9ef16ec8';
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"JacNc":[function(require,module,exports) {
 exports.interopDefault = function(a) {
