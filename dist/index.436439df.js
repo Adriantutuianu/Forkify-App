@@ -537,10 +537,14 @@ const controlAddBookmark = function() {
 const controlBookmarks = function() {
     _bookmarksViewDefault.default.render(_modelJs.state.bookmarks);
 };
-const controlAddRecipe = function(newRecipe) {
-    console.log(newRecipe);
-    //Upload the new recipe data
-    _modelJs.uploadRecipe(newRecipe);
+const controlAddRecipe = async function(newRecipe) {
+    try {
+        //Upload the new recipe data
+        await _modelJs.uploadRecipe(newRecipe);
+    } catch (err) {
+        console.error('🚲🛹', err);
+        _addRecipeViewJsDefault.default.renderError(err.message);
+    }
 };
 const init = function() {
     _bookmarksViewDefault.default.addHandlerRender(controlBookmarks);
@@ -669,16 +673,22 @@ const clearBookmarks = function() {
     localStorage.clear('bookmarks');
 };
 const uploadRecipe = async function(newRecipe) {
-    const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].startsWith('ingredient') && entry[1] !== ''
-    ).map((ing)=>{
-        const [quantity, unit, description] = ing[1].replaceAll('', '').split(',');
-        return {
-            quantity,
-            unit,
-            description
-        };
-    });
-    console.log(ingredients);
+    try {
+        const ingredients = Object.entries(newRecipe).filter((entry)=>entry[0].startsWith('ingredient') && entry[1] !== ''
+        ).map((ing)=>{
+            const ingArr = ing[1].replaceAll('', '').split(',');
+            if (ingArr.length !== 3) throw new Error('Wrong ingredient format! Please use the correct format :)');
+            const [quantity, unit, description] = ing[1];
+            return {
+                quantity: quantity ? +quantity : null,
+                unit,
+                description
+            };
+        });
+        console.log(ingredients);
+    } catch (err) {
+        throw err;
+    }
 };
 
 },{"regenerator-runtime":"cH8Iq","./config.js":"beA2m","./helpers.js":"9l3Yy","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"cH8Iq":[function(require,module,exports) {
