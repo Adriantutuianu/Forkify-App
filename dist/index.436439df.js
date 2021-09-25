@@ -549,6 +549,8 @@ const controlAddRecipe = async function(newRecipe) {
         _recipeViewJsDefault.default.render(_modelJs.state.recipe);
         //Success message
         _addRecipeViewJsDefault.default.renderMessage();
+        //Render bookmark view
+        _bookmarksViewDefault.default.render(_modelJs.state.bookmarks);
         //Close form window
         setTimeout(function() {
             _addRecipeViewJsDefault.default.toggleWindow();
@@ -569,7 +571,7 @@ const init = function() {
 };
 init();
 
-},{"./model.js":"6Yfb5","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","./views/paginationView.js":"c2v8w","./views/bookmarksView.js":"cUfi0","./views/addRecipeView.js":"4NyJt","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","./views/bookmarksView":"cUfi0","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./config.js":"beA2m"}],"6Yfb5":[function(require,module,exports) {
+},{"./model.js":"6Yfb5","./config.js":"beA2m","./views/recipeView.js":"9q0mt","./views/searchView.js":"51HTZ","./views/resultsView.js":"a6WEO","./views/paginationView.js":"c2v8w","./views/bookmarksView.js":"cUfi0","./views/addRecipeView.js":"4NyJt","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","./views/bookmarksView":"cUfi0","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"6Yfb5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state
