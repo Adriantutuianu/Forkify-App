@@ -134,11 +134,10 @@ export const uploadRecipe = async function (newRecipe) {
             'Wrong ingredient format! Please use the correct format :)'
           );
 
-        const [quantity, unit, description] = ing[1];
+        const [quantity, unit, description] = ingArr;
 
         return { quantity: quantity ? +quantity : null, unit, description };
       });
-
     const recipe = {
       title: newRecipe.title,
       source_url: newRecipe.sourceUrl,
